@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="21513" systemVersion="21H1222" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="ConditionEntity" representedClassName="ConditionEntity" syncable="YES">
+        <attribute name="icon" optional="YES" attributeType="String"/>
+        <attribute name="text" optional="YES" attributeType="String"/>
+        <relationship name="relationship" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CurrentEntity" inverseName="toCondition" inverseEntity="CurrentEntity"/>
+    </entity>
+    <entity name="CurrentEntity" representedClassName="CurrentEntity" syncable="YES">
+        <attribute name="feelslikeC" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="feelslikeF" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="humidity" optional="YES" attributeType="Double" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="tempC" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="tempF" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="windKph" attributeType="Double" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="windMph" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <relationship name="relationship" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="WeatherEntity" inverseName="toCurrent" inverseEntity="WeatherEntity"/>
+        <relationship name="toCondition" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="ConditionEntity" inverseName="relationship" inverseEntity="ConditionEntity"/>
+    </entity>
+    <entity name="LocationEntity" representedClassName="LocationEntity" syncable="YES">
+        <attribute name="country" optional="YES" attributeType="String"/>
+        <attribute name="lat" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="localtime" optional="YES" attributeType="String"/>
+        <attribute name="localtimeEpoch" optional="YES" attributeType="Double" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="lon" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <attribute name="region" optional="YES" attributeType="String"/>
+        <attribute name="tzId" optional="YES" attributeType="String"/>
+        <relationship name="relationship" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="WeatherEntity" inverseName="toLocation" inverseEntity="WeatherEntity"/>
+    </entity>
+    <entity name="WeatherEntity" representedClassName="WeatherEntity" syncable="YES">
+        <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <relationship name="toCurrent" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="CurrentEntity" inverseName="relationship" inverseEntity="CurrentEntity"/>
+        <relationship name="toLocation" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="LocationEntity" inverseName="relationship" inverseEntity="LocationEntity"/>
+    </entity>
+</model>
